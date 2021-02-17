@@ -315,6 +315,15 @@ button:focus {
   background: #0B7CFF;
 }
 
+.mail a {
+  color: #0B7CFF;
+}
+
+.mail a:hover {
+  background: #0B7CFF;
+}
+
+
 /* ==========================================================================
    2.4  Pre Loader
    ========================================================================== */
@@ -1459,6 +1468,12 @@ button:focus {
 }
 
 .single-team .social-list .twitter a:hover {
+  background: #1da1f2;
+  color: #fff;
+}
+
+
+.single-team .social-list .mail a:hover {
   background: #1da1f2;
   color: #fff;
 }
