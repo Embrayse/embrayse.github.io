@@ -22,6 +22,47 @@
     <link rel="stylesheet" href="css/main.css">    
     <link rel="stylesheet" href="css/responsive.css">
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function() {
+      emailjs.init("user_xdhGoAN6UrW48nwLbIZIS");
+      })();
+    </script>
+
+    <script type="text/javascript">
+      window.onload = function() {
+          document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const form = this
+            const message = $("#submission-message")
+            const spinner = $("#contactForm .spinner")
+            const templateParams = {
+              name: form.name.value,
+              email: form.email.value,
+              msg_subject: form.msg_subject.value,
+              message: form.message.value
+            }
+
+            $("#contactForm :input").prop("disabled", true);
+            message.css("opacity", 0)
+            spinner.css("opacity", 1)
+
+            emailjs.send('service_i2h5f4j', 'template_rs1b4sf', templateParams)
+                .then(function() {
+                  $("#contactForm :input").prop("disabled", false);
+                  message.text("Thank you for contacting us. We'll be in touch shortly!")
+                  message.css("opacity", 1)
+                  spinner.css("opacity", 0)
+                  form.reset()
+                }, function(error) {
+                  $("#contactForm :input").prop("disabled", false);
+                  message.text("Something went wrong! Please try again or email us directly at info@embrayse.com")
+                  message.css("opacity", 1)
+                  spinner.css("opacity", 0)
+                });
+          });
+      }
+    </script>
   </head>
   
   <body>
@@ -68,7 +109,7 @@
                 <!-- <h3 class="wow fadeInDown" data-wow-delay="0.3s">Ready For</h3> -->
                 <h2 class="wow fadeInRight" data-wow-delay="0.6s">Embrayse</h2> 
                 <h4 class="wow fadeInUp" data-wow-delay="0.6s">aged care meal management, done right</h4>
-                <a href="#" class="btn btn-lg btn-border wow fadeInUp" data-wow-delay="0.9s">Learn More</a>
+                <a href="#contact" class="btn btn-lg btn-border wow fadeInUp page-scroll" data-wow-delay="0.9s">Get in Touch Today</a>
               </div>
             </div>
           </div>
@@ -762,7 +803,7 @@
     <!-- Call To Action Section Start -->
 
     <!-- Subcribe Section Start -->
-    <div id="subscribe" class="section">
+    <div id="subscribe" class="section" style="display:none">
       <div class="container">
         <div class="row justify-content-between">
           <div class="col-lg-5 col-md-12 col-xs-12">
@@ -960,25 +1001,33 @@
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <input type="text" placeholder="Your Email" id="email" class="form-control" name="name" required data-error="Please enter your email">
+                        <input type="text" placeholder="Your Email" id="email" class="form-control" name="email" required data-error="Please enter your email">
                         <div class="help-block with-errors"></div>
                       </div> 
                     </div>
                     <div class="col-md-12">
                       <div class="form-group">
-                        <input type="text" placeholder="Subject" id="msg_subject" class="form-control" required data-error="Please enter your subject">
+                        <input type="text" placeholder="Subject" id="msg_subject" class="form-control" name="msg_subject" required data-error="Please enter your subject">
                         <div class="help-block with-errors"></div>
                       </div>
                     </div>
                     <div class="col-md-12">
                       <div class="form-group"> 
-                        <textarea class="form-control" id="message" placeholder="Your Message" rows="7" data-error="Write your message" required></textarea>
+                        <textarea class="form-control" id="message" name="message" placeholder="Your Message" rows="7" data-error="Write your message" required></textarea>
                         <div class="help-block with-errors"></div>
                       </div>
                       <div class="submit-button">
                         <button class="btn btn-common btn-effect" id="submit" type="submit">Send Message</button>
                         <div id="msgSubmit" class="h3 hidden"></div> 
                         <div class="clearfix"></div> 
+                      </div>
+                      <div class="message-container">
+                        <div class="spinner">
+                          <div class="double-bounce1"></div>
+                          <div class="double-bounce2"></div>
+                        </div>
+                        <div id="submission-message">
+                      </div>
                       </div>
                     </div>
                   </div>            
@@ -1168,7 +1217,7 @@
     <script src="js/jquery.magnific-popup.min.js"></script>    
     <script src="js/waypoints.min.js"></script>    
     <script src="js/form-validator.min.js"></script>
-    <script src="js/contact-form-script.js"></script>   
+    <!-- <script src="js/contact-form-script.js"></script>    -->
     <script src="js/main.js"></script>
     
   </body>

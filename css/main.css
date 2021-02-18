@@ -2008,13 +2008,47 @@ textarea {
 }
 
 #contact {
-  background: #ffffff;
+  background: url(../img/bg/bg-contact.jpg);
+  background-position: center;
   position: relative;
   overflow: hidden;
 }
 
+#contact .section-title, #contact h5 {
+  color: #fff
+}
+
+#contact .section-subtitle, #contact p {
+  color: #ccc
+}
+
 #contact .contact-block {
   overflow: hidden;
+}
+
+#contact .submit-button {
+  display: inline-block;
+}
+
+#contact .message-container {
+  position: relative;
+  display: inline-block;
+}
+
+#contact #submission-message {
+  display: inline-block;
+  color: #ccc;
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+#contact .spinner {
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  opacity: 0;
+  transition: opacity 0.3s;
 }
 
 .text-danger {
