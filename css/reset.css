@@ -1,0 +1,51 @@
+body {
+  -webkit-text-size-adjust: 100%;
+  color: var(--color-text-primary);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: inherit;
+  font-weight: normal;
+  line-height: normal;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button {
+  background: none;
+  border: none;
+  border-radius: 0;
+  font-size: inherit;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+}
+
+strong {
+  font-weight: bold;
+}
+
+input,
+select,
+textarea {
+  -webkit-appearance: none;
+  font-family: inherit;
+}
+
+ul {
+  list-style: none;
+}
