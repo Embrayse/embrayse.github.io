@@ -4,7 +4,7 @@ html {
 
 h1 {
   font-family: "Pridi";
-  font-size: 40px;
+  font-size: 2.2rem;
   font-weight: 600;
   line-height: 1;
   margin-bottom: 20px;
@@ -25,6 +25,8 @@ header nav ul {
 
 header nav ul li:first-child {
   flex-grow: 1;
+  display: flex;
+  align-items: center;
 }
 
 header img.logo {
@@ -39,6 +41,8 @@ body {
 
 body > main > article > section {
   background-color: var(--color-bg-primary);
+  overflow-x: hidden;
+  padding: 80px 0;
 }
 
 body > main > article > section.alt {
@@ -49,13 +53,18 @@ body > main > article > section.alt {
   max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  padding: 80px 40px;
+  padding: 0 40px;
   display: flex;
+  flex-direction: column;
 }
 
 .content-container.centered {
-  justify-content: center;
+  align-items: center;
   text-align: center;
+}
+
+.content-container:not(:last-of-type) {
+  margin-bottom: 80px;
 }
 
 .info-box {
@@ -66,12 +75,12 @@ body > main > article > section.alt {
   margin-bottom: 20px;
 }
 
-.info-box.secondary h1 {
-  font-size: 16px;
+.info-box.secondary {
+  font-size: 0.9rem;
 }
 
 .info-box.secondary h1 {
-  font-size: 28px;
+  font-size: 1.5rem;
 }
 
 .hero-box {
@@ -123,12 +132,12 @@ body > main > article > section.alt {
 .photo-desc img {
   height: 600px;
   position: absolute;
-  left: 50px;
+  left: 150px;
 }
 
 .photo-desc.left img {
   left: unset;
-  right: 50px;
+  right: 150px;
 }
 
 .cta-button {
@@ -142,8 +151,137 @@ body > main > article > section.alt {
   border-radius: 5px;
 }
 
-/* @media (min-width: 768px) {
+.pricing {
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pricing p {
+  margin-bottom: 20px;
+}
+
+.pricing .breakdown {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pricing .breakdown > * {
+  flex: 1 1;
+  max-width: 500px;
+  padding: 20px 60px;
+}
+
+.pricing .breakdown > :first-child {
+  border-right: 1px solid var(--color-border-dark);
+}
+
+.pricing .monthly {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pricing .monthly > :first-child {
+  font-size: 80px;
+  font-family: "Pridi";
+  font-weight: lighter;
+  margin-right: 15px;
+}
+
+.pricing .monthly > :nth-child(2) {
+  color: var(--color-text-secondary);
+  text-align: left;
+  font-size: 14px;
+}
+
+.pricing .inclusions {
+  text-align: left;
+}
+
+.pricing .inclusions ul li {
+  margin-bottom: 20px;
+}
+
+.pricing .inclusions ul li::before {
+  content: '✓';
+  font-size: 21px;
+  margin-right: 10px;
+}
+
+.pricing .notes {
+  color: var(--color-text-secondary);
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.empower::before {
+  content: '';
+  display: inline-block;
+  width: 260px;
+  height: 130px;
+  background-color: #c4c4c4;
+  margin-bottom: 15px;
+  border-top-left-radius: 130px;
+  border-top-right-radius: 130px;
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    padding: 0 20px;
+  }
+
+  .hero-box {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-image {
+    margin-top: 60px;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+  }
+
   .photo-desc {
+    flex-direction: column-reverse;
+    height: auto;
+  }
+
+  .photo-desc.left {
     flex-direction: column;
   }
-} */
+
+  .photo-desc > * {
+    width: unset;
+  }  
+
+  .photo-desc .img-container{
+    text-align: center;
+  }
+
+  .photo-desc img {
+    position: static;
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  .pricing .breakdown {
+    flex-direction: column;
+  }
+
+  .pricing .breakdown > :first-child {
+    border-right: unset;
+  }
+
+  .pricing .breakdown > * {
+    max-width: unset;
+    padding: 20px 40px;
+  }
+}
