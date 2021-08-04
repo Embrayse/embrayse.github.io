@@ -27,7 +27,7 @@
             <img class="logo" src="img/logo/embrayse-logo-lightbg.png" />
           </li>
           <li>
-            <a class="cta-button" href="#">Book your demo</a>
+            <a class="cta-button" href="#book-demo">Book your demo</a>
           </li>
       </nav>
     </header>
@@ -40,7 +40,7 @@
               <div class="info-box">
                 <h1>Delight your residents with a personalised food experience</h1>
                 <p>A simple and intuitive meal management app for aged care homes to help you and your team <strong>create menus, take orders on the go, prep and fulfill meals.</strong></p>
-                <a class="cta-button" href="#">Book your demo</a>
+                <a class="cta-button" href="#book-demo">Book your demo</a>
               </div>
               <div class="hero-image"><img src="img/app/happy-people.jpg" /></div>
             </div>
@@ -141,7 +141,7 @@
                   </ul>
                 </div>
               </div>
-              <a class="cta-button" href="#">Book your demo</a>
+              <a class="cta-button" href="#book-demo">Book your demo</a>
               <div class="notes">
                 <p>Monthly subscription and implementation fee do not include hardware device purchases (eg. tablets and receipt printers)</p>
                 <p>All prices are in Australian Dollars and exclude GST.</p>
@@ -150,12 +150,24 @@
           </div>
         </section>
 
-        <section>
+        <section id="book-demo">
           <div class="content-container centered">
             <h1>Ready to get started?</h1>
           </div>
         </section>
       </article>
     </main>
+
+    <script>
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+    </script>
   </body>
 </html>
