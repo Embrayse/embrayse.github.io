@@ -305,15 +305,9 @@ ul.steps li {
   text-decoration: underline;
 }
 
-.get-in-touch > div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 img.emoji {
   width: 20px;
-  margin-left: 5px;
+  vertical-align: sub;
 }
 
 form {
