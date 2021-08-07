@@ -18,6 +18,60 @@
     <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=PT+Serif:wght@400;700&family=Pridi:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=PT+Serif">
     <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=PT+Sans">
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function() {
+      emailjs.init("user_xdhGoAN6UrW48nwLbIZIS");
+      })();
+    </script>
+
+    <script type="text/javascript">
+      window.onload = function() {
+          document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const form = this
+            const message = form.querySelector("#submission-message")
+            const spinner = form.querySelector("#submission-spinner")
+            const inputs = form.querySelectorAll("input, textarea, button")
+
+            const templateParams = {
+              name: form.fullname.value,
+              email: form.email.value,
+              phone: form.phone.value,
+              organisation: form.organisation.value,
+              message: form.message.value
+            }
+
+            inputs.forEach((elem) => {
+              elem.setAttribute('disabled', true)
+            })
+
+            message.style.opacity = 0
+            spinner.style.opacity = 1
+
+            emailjs.send('service_i2h5f4j', 'template_ss2pz8vf', templateParams)
+                .then(function() {
+                  inputs.forEach((elem) => {
+                    elem.removeAttribute('disabled')
+                  })
+
+                  message.innerText = "Thank you for contacting us! We'll be in touch shortly."
+                  message.style.opacity = 1
+                  spinner.style.opacity = 0
+                  form.reset()
+                }, function(error) {
+                  inputs.forEach((elem) => {
+                    elem.removeAttribute('disabled')
+                  })
+
+                  message.innerText = "Something went wrong! Please try again or email us directly at hello@embrayse.com"
+                  message.style.opacity = 1
+                  spinner.style.opacity = 0
+                });
+          });
+      }
+    </script>
   </head>
   
   <body>
@@ -186,6 +240,35 @@
 
               <p>Leave your contact details below and we’ll reach out to book your free demo. We’ll walk you through our product, work with you to understand your needs and make sure we are a good fit for you.</p>
             </div>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="fullname">Full name <span>(required)</span></label>
+                <input type="text" id="fullname" name="fullname" required maxlength="300">
+              </div>
+              <div class="form-group">
+                <label for="email">Email <span>(required)</span></label>
+                <input type="email"  id="email" name="email" required maxlength="300">
+              </div> 
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text"  id="phone" name="phone" maxlength="100">
+              </div>
+              <div class="form-group">
+                <label for="organisation">Organisation</label>
+                <input type="text"  id="organisation" name="organisation" maxlength="300">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" maxlength="3000"></textarea>
+              </div>
+              <div class="submit-button">
+                <button class="button" id="submit" type="submit">Send</button>
+              </div>
+              <div class="submit-message-container">
+                <div id="submission-message">&nbsp;</div>
+                <div id="submission-spinner" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+              </div>
+            </form>
           </div>
         </section>
 
@@ -245,10 +328,10 @@
             </div>
 
             <div class="get-in-touch">
-              <div>We are an Australian aged care tech startup based in Brisbane, Queensland 🇦🇺</p>
+              <div>We are an Australian aged care tech startup based in Brisbane, Queensland <img class="emoji" src="img/app/flag-australia.png" /></div>
               <br />
               <br />
-              <div>Get in touch: <a href="mailto:hello@embrayse.com">hello@embrayse.com</a></div>
+              <div>Get in touch:&nbsp;<a href="mailto:hello@embrayse.com">hello@embrayse.com</a></div>
             </div>
           </div>
         </section>
