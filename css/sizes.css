@@ -1,0 +1,10 @@
+:root {
+  --font-size-header-small: 1.22rem;
+  --font-size-header-medium: 1.56rem;
+  --font-size-header-large: 2.22rem;
+
+  --font-size-body-fineprint: 0.78rem; 
+  --font-size-body-small: 0.89rem;
+  --font-size-body-normal: 1rem;
+  --font-size-body-large: 1.22rem;
+}
