@@ -30,6 +30,23 @@
       })(window,document,'script','dataLayer','GTM-MWGM8WK');</script>
     <!-- End Google Tag Manager -->
 
+    <!-- Smooth scroll -->
+    <script>
+      window.addEventListener('load', () => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+
+              document.querySelector(this.getAttribute('href')).scrollIntoView({
+                  behavior: 'smooth'
+              });
+          });
+        })
+    });
+    </script>
+    <!-- Smooth scroll -->
+
+    <!-- EmailJS Submission -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
     <script type="text/javascript">
       (function() {
@@ -38,7 +55,7 @@
     </script>
 
     <script type="text/javascript">
-      window.onload = function() {
+      window.addEventListener('load', () => {
           document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const form = this
@@ -81,8 +98,10 @@
                   spinner.style.opacity = 0
                 });
           });
-      }
+      })
     </script>
+    <!-- EmailJS Submission -->
+
   </head>
   
   <body>
@@ -119,7 +138,7 @@
               <h1>Time for a change</h1>
               <p>Food and the dining experience play a very important role in making every day better for aged care residents.</p>
               <p>Resident dietary needs and preferences are becoming increasingly more complex and safety and nutrition are emerging as critical areas for quality and compliance.</p>
-              <p>We’ve set out to build a simple and focused solution to help you and your teams to <strong>transform the way residents and staff manage daily meal orders.</strong></p>
+              <p>We’ve set out to build a simple and focused solution to help you and your teams <strong>transform the way residents and staff manage daily meal orders.</strong></p>
             </div>
           </div>
         </section>
@@ -304,7 +323,7 @@
               </div>
               <div class="info-box secondary">
                 <h1>Customer Success</h1>
-                <p>Your success is our main goal. We'll work with you, train your team, and provide ongoing support to make sure you get tangible value from your investment.</p>
+                <p>Your success is our main goal. We’ll work with you, train your team, and provide ongoing support to make sure you get tangible value from your investment.</p>
               </div>
               <div class="info-box secondary">
                 <h1>Data Privacy</h1>
@@ -352,17 +371,5 @@
     <footer>
       <div>2021 Embrayse ©. All rights reserved.</div>
     </footer>
-
-    <script>
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-    </script>
   </body>
 </html>
