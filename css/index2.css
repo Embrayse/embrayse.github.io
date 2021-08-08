@@ -5,7 +5,7 @@ html {
 h1, h2 {
   font-family: "Pridi";
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.2;
   margin-bottom: 20px;
 }
 
@@ -23,6 +23,10 @@ h1.soft {
   font-style: italic;
 }
 
+p {
+  margin-bottom: 20px;
+}
+
 .button {
   font-family: "PT Sans";
   font-weight: bold;
@@ -36,6 +40,10 @@ h1.soft {
 
 .button.small {
   font-size: var(--font-size-body-small);
+}
+
+.large-bottom-margin {
+  margin-bottom: 80px;
 }
 
 header nav ul {
@@ -97,8 +105,8 @@ body > main > article > section.alt {
   max-width: 700px;
 }
 
-.info-box p {
-  margin-bottom: 20px;
+.info-box h1 {
+  margin-bottom: 40px;
 }
 
 .info-box.secondary {
@@ -107,6 +115,7 @@ body > main > article > section.alt {
 
 .info-box.secondary h1 {
   font-size: var(--font-size-header-medium);
+  margin-bottom: 20px;
 }
 
 .hero-box {
@@ -138,7 +147,6 @@ body > main > article > section.alt {
 
 .punchline {
   font-size: var(--font-size-body-large);
-  margin: 60px 0;
 }
 
 .photo-desc {
@@ -183,10 +191,7 @@ body > main > article > section.alt {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.pricing p {
-  margin-bottom: 20px;
+  margin-top: 40px;
 }
 
 .pricing .breakdown {
@@ -255,18 +260,18 @@ ul.steps {
 
 ul.steps li {
   flex: 1 1 0;
-  padding: 0 20px;
+  padding: 0 40px;
   font-size: var(--font-size-body-small);
 }
 
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 60px;
   margin: 40px 0;
 }
 
 .info-grid > * {
-  padding: 30px;
   text-align: left;
 }
 
@@ -275,7 +280,7 @@ ul.steps li {
   width: 100%;
 }
 
-.team > * {
+.team > .seperator {
   flex: 1 1 0;
 }
 
@@ -525,9 +530,5 @@ footer {
 
   .team > * {
     margin-bottom: 40px;
-  }
-
-  .punchline {
-    font-size: var(--font-size-body-normal);
   }
 }
