@@ -1,40 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="keywords" content="Bootstrap, Landing page, Template, Registration, Landing">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="author" content="Grayrids">
-    <title>Embrayse</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Aged care, Elderly care, Nursing home, Meal management, Food management, Software">
+    <meta name="description" content="A simple and intuitive meal management app for aged care homes to help you and your team create menus, take orders on the go, prep and fulfill meals.">
+    <meta name="author" content="Embrayse Pty Ltd">
+    <title>Embrayse | Aged care meal management software</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/line-icons.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/owl.theme.css">
-    <link rel="stylesheet" href="css/nivo-lightbox.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/color-switcher.css">
-    <link rel="stylesheet" href="css/menu_sideslide.css">
-    <link rel="stylesheet" href="css/main.css">    
-    <link rel="stylesheet" href="css/responsive.css">
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/colors.css">
+    <link rel="stylesheet" href="css/sizes.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
 
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-	
-	<!-- Google Tag Manager -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=PT+Serif:wght@400;700&family=Pridi:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=PT+Serif">
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=PT+Sans">
+
+    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MWGM8WK');</script>
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MWGM8WK');</script>
     <!-- End Google Tag Manager -->
 
+    <!-- Smooth scroll -->
+    <script>
+      window.addEventListener('load', () => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+
+              document.querySelector(this.getAttribute('href')).scrollIntoView({
+                  behavior: 'smooth'
+              });
+          });
+        })
+    });
+    </script>
+    <!-- Smooth scroll -->
+
+    <!-- EmailJS Submission -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
     <script type="text/javascript">
       (function() {
@@ -43,1201 +55,318 @@
     </script>
 
     <script type="text/javascript">
-      window.onload = function() {
+      window.addEventListener('load', () => {
           document.getElementById('contactForm').addEventListener('submit', function(event) {
             event.preventDefault();
             const form = this
-            const message = $("#submission-message")
-            const spinner = $("#contactForm .spinner")
+            const message = form.querySelector("#submission-message")
+            const spinner = form.querySelector("#submission-spinner")
+            const inputs = form.querySelectorAll("input, textarea, button")
+
             const templateParams = {
-              name: form.name.value,
+              name: form.fullname.value,
               email: form.email.value,
-              msg_subject: form.msg_subject.value,
+              phone: form.phone.value,
+              organisation: form.organisation.value,
               message: form.message.value
             }
 
-            $("#contactForm :input").prop("disabled", true);
-            message.css("opacity", 0)
-            spinner.css("opacity", 1)
+            inputs.forEach((elem) => {
+              elem.setAttribute('disabled', true)
+            })
 
-            emailjs.send('service_i2h5f4j', 'template_rs1b4sf', templateParams)
+            message.style.opacity = 0
+            spinner.style.opacity = 1
+
+            emailjs.send('service_i2h5f4j', 'template_s2pz8vf', templateParams)
                 .then(function() {
-                  $("#contactForm :input").prop("disabled", false);
-                  message.text("Thank you for contacting us. We'll be in touch shortly!")
-                  message.css("opacity", 1)
-                  spinner.css("opacity", 0)
+                  inputs.forEach((elem) => {
+                    elem.removeAttribute('disabled')
+                  })
+
+                  message.innerText = "Thank you for contacting us! We'll be in touch shortly."
+                  message.style.opacity = 1
+                  spinner.style.opacity = 0
                   form.reset()
                 }, function(error) {
-                  $("#contactForm :input").prop("disabled", false);
-                  message.text("Something went wrong! Please try again or email us directly at info@embrayse.com")
-                  message.css("opacity", 1)
-                  spinner.css("opacity", 0)
+                  inputs.forEach((elem) => {
+                    elem.removeAttribute('disabled')
+                  })
+
+                  message.innerText = "Something went wrong! Please try again or email us directly at hello@embrayse.com"
+                  message.style.opacity = 1
+                  spinner.style.opacity = 0
                 });
           });
-      }
+      })
     </script>
+    <!-- EmailJS Submission -->
+
   </head>
   
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MWGM8WK"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
-    <!-- Header Section Start -->
-    <header id="slider-area">  
-      <nav class="navbar navbar-expand-md fixed-top scrolling-navbar bg-white">
-        <div class="container">          
-          <a class="navbar-brand" href="/"></span>
-            <img src="img/logo/embrayse-logo-lightbg.png" alt="Embrayse" />
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="lni lni-menu"></i>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto w-100 justify-content-end">
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#slider-area">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#services">Services</a>
-              </li>  
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#features">Why Us</a>
-              </li>                            
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#team">Team</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link page-scroll" href="#contact">Contact</a>
-              </li> 
-            </ul>              
-          </div>
-        </div>
-      </nav> 
-
-      <!-- Main Carousel Section -->
-      <div id="carousel-area">
-        <div id="carousel-slider" class="carousel slide carousel-fade" data-ride="carousel">
-          <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <img src="img/slider/bg-6.jpg" alt="">
-              <div class="carousel-caption text-center">
-                <!-- <h3 class="wow fadeInDown" data-wow-delay="0.3s">Ready For</h3> -->
-                <h2 class="wow fadeInRight" data-wow-delay="0.6s">
-                  <img src="img/logo/embrayse-logo-darkbg.png" alt="Embrayse" class="header-svg" width="400" />
-                </h2> 
-                <h4 class="wow fadeInUp" data-wow-delay="0.6s">A meal management solution for aged care homes.<br />Delight your residents with a personalised food experience.</h4>
-                <a href="" class="btn btn-lg btn-border wow fadeInUp page-scroll" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/embrayse/demo'});return false;">Book your Demo</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>  
-
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <img class="logo" src="img/logo/embrayse-logo-lightbg.png" />
+          </li>
+          <li>
+            <a class="button small" href="#book-demo">Book your demo</a>
+          </li>
+      </nav>
     </header>
-    <!-- Header Section End --> 
-    
-    <!-- Call to Action Start -->
-    <section class="call-action section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-10">
-            <div class="cta-trial text-center">
-              <h3>It's Time For a Change</h3>
+    <main>
+      <article>
+
+        <section>
+          <div class="content-container">
+            <div class="hero-box">
+              <div>
+                <h1>Delight your residents with a personalised food experience</h1>
+                <p>A simple and intuitive meal management app for aged care homes to help you and your team <strong>create menus, take orders on the go, prep and fulfill meals.</strong></p>
+                <a class="button" href="#book-demo">Book your demo</a>
+              </div>
+              <div class="hero-image right"><img src="img/app/happy-people.jpg" /></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="alt">
+          <div class="content-container centered">
+            <div class="info-box">
+              <h1>Time for a change</h1>
+              <p>Food plays a very important role in making every day better for aged care residents.</p>
+              <p>Resident dietary needs and preferences are becoming increasingly more complex and safety and nutrition are emerging as critical areas for quality and compliance.</p>
+              <p>We’ve set out to build a simple and focused solution to help you and your teams <strong>transform the way residents and staff manage daily meal orders.</strong></p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="content-container">
+            <div class="photo-desc">
+              <div class="desc">
+                <div class="info-box secondary">
+                  <h1>Know your residents, show you care</h1>
+                  <p>What do they like? How should we prep it? Do they have allergies? Stop relying on memory and paper with access to <strong>resident nutritional preferences</strong> to help them choose their meals and <strong>minimise safety risks.</strong></p>
+                </div>
+                <div class="info-box secondary">
+                  <h1>Take orders on the go</h1>
+                  <p>Gone are the days of paper tick-sheets and laminated cards. Let your residents choose their meals from a full menu including pictures and blurbs from the chef to <strong>deliver a gourmet experience</strong>.</p>
+                </div>
+              </div>
+              <div class="img-container"><img src="img/app/orders.jpg" /></div>
+            </div>
+          </div>
+          <div class="content-container">
+            <div class="photo-desc left">
+              <div class="desc">
+                <div class="info-box secondary">
+                  <h1>Plan your meals</h1>
+                  <p>We won’t tell you what to cook but we’ll sure make it easier to <strong>create meals</strong> and <strong>plan menus</strong> ahead of time.</p>
+                </div>
+                <div class="info-box secondary">
+                  <h1>Prep and serve</h1>
+                  <p>Ready to plate? Every order placed is available in a production summary designed to help your kitchen staff know what to cook, for whom and when. Print tickets and attach them to trays so <strong>everyone stays in the know</strong>.</p>
+                </div>
+              </div>
+              <div class="img-container"><img src="img/app/menu.jpg" /></div>
+            </div>
+          </div>
+          <div class="content-container centered">
+            <div class="empower">
+              <img src="img/illustrations/chef-hat.svg" />
+              <div class="info-box secondary">
+                <h1>Empower your teams</h1>
+                <p><strong>Replace manual processes and improve efficiencies</strong> by simplifying menu creation, order taking, kitchen fulfillments, plating instructions, and inventory management with a single tool specifically designed to <strong>help your team delight your residents.</strong></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        </section>
+
+        <section class="alt">
+          <div class="content-container">
+            <div class="hero-box">
+              <div class="hero-image">
+                <img src="img/app/happy-people-2.jpg" />
+              </div>
+              <div class="info-box">
+                <h1 class="soft">“Good food, better living”</h1>
+                <p>Balanced diets are essential to physical and mental wellness. When coupled with great smells, presentations, textures and dining experiences, it can have a powerful impact on making everyday better.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="content-container centered">
+            <h1>Ready to get started?</h1>
+            <ul class="steps">
+              <li>
+                <img src="img/illustrations/calendar.svg" />
+                <h2>Step 1</h2>
+                <p>Book your demo and we’ll work with you to make sure we are the right fit for your team</p>
+              </li>
+              <li>
+                <img src="img/illustrations/analytics.svg" />
+                <h2>Step 2</h2>
+                <p>Setup your service for success with simple implementation and onsite training</p>
+              </li>
+              <li>
+                <img src="img/illustrations/team-work-2.svg" />
+                <h2>Step 3</h2>
+                <p>Empower your teams and delight your residents</p>
+              </li>
+            </ul>
+            <a class="button large-bottom-margin" href="#book-demo">Book your demo</a>
+            <div class="info-box">
+              <h1>Pay as you scale</h1>
+              <div class="punchline">
+                No hidden costs, no lock-in contracts.
+              </div>
+            </div>
+            <div class="pricing">
+              <div class="breakdown">
+                <div>
+                  <div class="monthly">
+                    <div>$7</div>
+                    <div>per bed<br />per month</div>
+                  </div>
+                  <p>$5000 one-time <strong>service setup</strong> fee for implementation and onsite training</p>
+                  <p>+$3000 for each additional service</p>
+                </div>
+                <div class="inclusions">
+                  <ul>
+                    <li>Unlimited meals</li>
+                    <li>Unlimited staff accounts</li>
+                    <li>Onsite training</li>
+                    <li>Phone support (business hours)</li>
+                    <li>24/7 Email Support</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="fineprint">
+                <p>Monthly subscription and implementation fee do not include hardware device purchases (eg. tablets and receipt printers)</p>
+                <p>All prices are in <strong>Australian Dollars</strong> and exclude GST.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="alt" id="book-demo">
+          <div class="content-container centered">
+            <div class="info-box">
+              <h1>Book your demo</h1>
               <p>
-                If you are responsible for resident meals at an aged care home, and frustrated by incomplete and cumbersome processes and systems to manage food services; if you are wondering whether you have all the right tools
-                to give your residents a great catering experience and empower your team to do the same, then we are here to help!
+                <div>Leave your contact details below and we’ll reach out to book your free demo.</div>
+                <div>We’ll walk you through our product, work with you to understand your needs and make sure we are a good fit for you.</div>
               </p>
-              <!-- <a href="#services" class="btn btn-common btn-effect page-scroll">Learn More</a> -->
             </div>
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="fullname">Full name <span>(required)</span></label>
+                <input type="text" id="fullname" name="fullname" required maxlength="300">
+              </div>
+              <div class="form-group">
+                <label for="email">Email <span>(required)</span></label>
+                <input type="email"  id="email" name="email" required maxlength="300">
+              </div> 
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text"  id="phone" name="phone" maxlength="100">
+              </div>
+              <div class="form-group">
+                <label for="organisation">Organisation</label>
+                <input type="text"  id="organisation" name="organisation" maxlength="300">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" maxlength="3000"></textarea>
+              </div>
+              <div class="submit-button">
+                <button class="button" id="submit" type="submit">Send</button>
+              </div>
+              <div class="submit-message-container">
+                <div id="submission-message">&nbsp;</div>
+                <div id="submission-spinner" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+              </div>
+            </form>
           </div>
-        </div>
-      </div>
-    </section>
-    <!-- Call to Action End -->
+        </section>
 
-    <!-- Services Section Start -->
-    <section id="services" class="section">
-      <div class="container">
-        <div class="section-header">          
-          <h2 class="section-title">What We Offer</h2>
-          <p class="section-subtitle">Let us take care of the mundane tasks so that you can focus on the important things.</p>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="item-boxes services-item wow fadeInDown" data-wow-delay="0.2s">
-              <div class="icon color-1">
-                <i class="lni lni-service"></i>
-              </div>
-              <h4>Personalised Service</h4>
-              <p>Sue likes her tea with two sugars and almond milk after dinner? Too easy. Embrayse makes it simple to manage complex resident preferences without relying on memory or paper.</p>
+        <section>
+          <div class="content-container centered">
+            <div class="info-box">
+              <h1>Why us?</h1>
+              <p>We understand how complex and challenging food management at aged care homes can be and what the risks are if mistakes are made. We strive to help eliminate cumbersome manual tasks so that you can focus on the right problems.</p>
             </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="item-boxes services-item wow fadeInDown" data-wow-delay="0.4s">
-              <div class="icon color-2">
-                <i class="lni lni-chef-hat"></i>
+            <div class="info-grid">
+              <div class="info-box secondary">
+                <h1>Simplicity</h1>
+                <p>User experience means everything to us. We build software that is intuitive and simple to use for your team and your residents.</p>
               </div>
-              <h4>From Order to Delivery</h4>
-              <p>Embrayse helps you manage your entire process from meal orders, to production and plating, to delivery, so you save valuable time and resources.</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="item-boxes services-item wow fadeInDown" data-wow-delay="0.6s">
-              <div class="icon color-3">
-                <i class="lni lni-pulse"></i>
-              </div>
-              <h4>Safe Eating</h4>
-              <p>Our smart menu filtering and alert systems give you confidence that residents can only choose meals that match their dietary needs, like allergies.</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="item-boxes services-item wow fadeInDown" data-wow-delay="0.2s">
-              <div class="icon color-4">
-                <i class="lni lni-emoji-happy"></i>
-              </div>
-              <h4>Happy Staff</h4>
-              <p>Delight your team by providing them with software that is simple, intuitive, and a joy to use, with little to no training needed. Happy staff means happy residents!</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="item-boxes services-item wow fadeInDown" data-wow-delay="0.6s">
-              <div class="icon color-6">
-                <i class="lni lni-bulb"></i>
-              </div>
-              <h4>Family Portal</h4>
-              <p>Differentiate yourself in the market by providing unique services, such as self-service and family portal for meal ordering and viewing meal history.</p>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="item-boxes services-item wow fadeInDown" data-wow-delay="0.4s">
-              <div class="icon color-5">
-                <i class="lni lni-graph"></i>
-              </div>
-              <h4>Forecasting</h4>
-              <p>Embrayse lets you capture orders multiple days in advance and view aggregated reports, so that you make smarter food planning and purchasing decisions.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Services Section End -->
-
-    <!-- Call to Action Start -->
-    <section class="call-action section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-10">
-            <div class="cta-trial text-center">
-              <h3>Are You Ready To Get Started?</h3>
-              <p>Our process is simple. Get in touch with us to book a free consultation, where we will go over your operations and needs and figure out together if Embrayse is right for you. We'll then set you up with an appropriate plan that fits your needs,
-                and walk you through everything you need to get up and running and achieve a successful outcome.
-              </p>
-              <a href="" class="btn btn-common btn-effect page-scroll" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/embrayse/demo'});return false;">Book your Demo</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Call to Action End -->
-
-    <!-- Features Section Start -->
-    <section id="features" class="section">
-      <div class="container">
-        <div class="section-header">          
-          <h2 class="section-title">Why Choose Us</h2>
-          <p class="section-subtitle">We understand how complex and challenging food management at aged care homes can be, and how much of a risk it is if you get it wrong. We strive to help you eliminate cumbersome manual tasks so that you can focus on the right problems.</p>
-        </div>
-        <div class="row">
-          <!-- Start featured -->
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="featured-box">
-              <div class="featured-icon">
-                <i class="lni lni-emoji-smile"></i>
-              </div>
-              <div class="featured-content">
-                <h4>Simplicity</h4>
-                <p>User experience means everything to us. We build software that are intuitive, simple to use, and a delight for your team and your residents.</p>
-              </div>
-            </div>
-          </div>
-          <!-- End featured -->
-          <!-- Start featured -->
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="featured-box">
-              <div class="featured-icon">
-                <i class="lni lni-layout"></i>
-              </div>
-              <div class="featured-content">
-                <h4>Expertise</h4>
+              <div class="info-box secondary">
+                <h1>Expertise</h1>
                 <p>We have extensive experience in developing Human Centred digital solutions for many industries, and have expertise working with aged care providers across Australia.</p>
               </div>
-            </div>
-          </div>
-          <!-- End featured -->
-          <!-- Start featured -->
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="featured-box">
-              <div class="featured-icon">
-                <i class="lni lni-users"></i>
-              </div>
-              <div class="featured-content">
-                <h4>Reliable Team</h4>
+              <div class="info-box secondary">
+                <h1>Reliable Team</h1>
                 <p>We have a long term vision and an agile approach. We work closely with you to identify challenges and come up with the right solutions.</p>
               </div>
-            </div>
-          </div>
-          <!-- End featured -->
-          <!-- Start featured -->
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="featured-box">
-              <div class="featured-icon">
-                <i class="lni lni-crown"></i>
+              <div class="info-box secondary">
+                <h1>Customer Success</h1>
+                <p>Your success is our main goal. We’ll work with you, train your team, and provide ongoing support to make sure you get tangible value from your investment.</p>
               </div>
-              <div class="featured-content">
-                <h4>Customer Success</h4>
-                <p>Your success is our main goal. We'll work with you, train your team, and provide ongoing support to make sure you get tangible value from your investment.</p>
+              <div class="info-box secondary">
+                <h1>Data Privacy</h1>
+                <p>We ensure all your data is stored securely and privately, and that you are compliant with Australian data privacy laws.</p>
               </div>
-            </div>
-          </div>
-          <!-- End featured -->
-          <!-- Start featured -->
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="featured-box">
-              <div class="featured-icon">
-                <i class="lni lni-database"></i>
-              </div>
-              <div class="featured-content">
-                <h4>Data Privacy</h4>
-                <p>We work hard to ensure all your data is stored securely and privately, and that you are compliant with Australian data privacy laws.</p>
+              <div class="info-box secondary">
+                <h1>Innovation</h1>
+                <p>We strive to help you stay at the forefront of digital transformation in aged care.</p>
               </div>
             </div>
-          </div>
-          <!-- End featured -->
-          <!-- Start featured -->
-          <div class="col-lg-4 col-md-6 col-xs-12">
-            <div class="featured-box">
-              <div class="featured-icon">
-                <i class="lni lni-rocket"></i>
+            <div class="team">
+              <div>
+                <img src="img/team/team1.png">
+                <div class="name">Poya Manouchehri</div>
+                <div class="role">Chief Executive Officer</div>
               </div>
-              <div class="featured-content">
-                <h4>Innovation</h4>
-                <p>More and more, technology is becoming a key component in providing great services. We strive to help you stay at the forefront of digital transformation in aged care.</p>
+              <div class="seperator"></div>
+              <div>
+                <img src="img/team/team2.png">
+                <div class="name">Roshani Manoucheri</div>
+                <div class="role">Aged Care Strategist</div>
+              </div>
+              <div class="seperator"></div>
+              <div>
+                <img src="img/team/team3.png">
+                <div class="name">Rod Sampera</div>
+                <div class="role">Head of Product</div>
+              </div>
+              <div class="seperator"></div>
+              <div>
+                <img src="img/team/team4.png">
+                <div class="name">Ryan Hayward</div>
+                <div class="role">Head of Technology</div>
               </div>
             </div>
-          </div>
-          <!-- End featured -->
-        </div>
-      </div>
-    </section>
-    <!-- Features Section End -->
 
-    <!-- Team section Start -->
-    <section id="team" class="section">
-      <div class="container">
-        <div class="section-header">          
-          <h2 class="section-title">Our Team</h2>
-          <p class="section-subtitle"></p>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="single-team">
-              <img src="img/team/team1.png" alt="">
-              <div class="team-details">
-                <div class="team-inner">
-                  <h4 class="team-title">Poya Manouchehri</h4>
-                  <p>Chief Executive Officer</p>
-                  <ul class="social-list">
-                    <li class="mail"><a href="mailto:poya@embrayse.com"><i class="lni lni-envelope"></i></a></li>
-                    <li class="linkedin"><a href="https://www.linkedin.com/in/poyam/" target="_blank"><i class="lni lni-linkedin-original"></i></a></li>
-                  </ul>
-                </div>
-              </div>
+            <div class="get-in-touch">
+              <div>We are an Australian aged care tech startup based in Brisbane, Queensland <img class="emoji" src="img/app/flag-australia.png" /></div>
+              <br />
+              <br />
+              <div>Get in touch:&nbsp;<a href="mailto:hello@embrayse.com">hello@embrayse.com</a></div>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="single-team">
-              <img src="img/team/team2.png" alt="">
-              <div class="team-details">
-                <div class="team-inner">
-                  <h4 class="team-title">Roshani Manouchehri</h4>
-                  <p>Aged Care Strategist</p>
-                  <ul class="social-list">
-                    <li class="mail"><a href="mailto:roshani@embrayse.com"><i class="lni lni-envelope"></i></a></li>
-                    <li class="linkedin"><a href="https://www.linkedin.com/in/roshani-manouchehri-85b95079/" target="_blank"><i class="lni lni-linkedin-original"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="single-team">
-              <img src="img/team/team3.png" alt="">
-              <div class="team-details">
-                <div class="team-inner">                  
-                  <h4 class="team-title">Rod Sampera</h4>
-                  <p>Head of Product</p>
-                  <ul class="social-list">
-                    <li class="mail"><a href="mailto:rod@embrayse.com"><i class="lni lni-envelope"></i></a></li>
-                    <li class="linkedin"><a href="https://www.linkedin.com/in/rodsampera/" target="_blank"><i class="lni lni-linkedin-original"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 col-xs-12">
-            <div class="single-team">
-              <img src="img/team/team4.png" alt="">
-              <div class="team-details">
-                <div class="team-inner">
-                  <h4 class="team-title">Ryan Hayward</h4>
-                  <p>Head of Technology</p>
-                  <ul class="social-list">
-                    <li class="mail"><a href="mailto:ryan@embrayse.com"><i class="lni lni-envelope"></i></a></li>
-                    <li class="linkedin"><a href="https://www.linkedin.com/in/ryan-hayward-b9451920/" target="_blank"><i class="lni lni-linkedin-original"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Team section End -->
+        </section>
+      </article>
+    </main>
 
-    <!-- Start Video promo Section -->
-    <section class="video-promo section" style="display: none">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-sm-12">
-              <div class="video-promo-content text-center">
-                <a href="https://www.youtube.com/embed/LSgBpbgTlhw" class="video-popup"><i class="lni lni-film-play"></i></a>
-                <h2 class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">Our Introductory Video</h2>
-                <p class="wow zoomIn" data-wow-duration="1000ms" data-wow-delay="100ms">Learn more about us, its only 30mins</p>
-              </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- End Video Promo Section -->
-
-    <!-- Portfolio Section -->
-    <section id="portfolios" class="section" style="display: none">
-      <!-- Container Starts -->
-      <div class="container">
-        <div class="section-header">          
-          <h2 class="section-title">Our Works</h2>
-          <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos debitis.</p>
-        </div>
-        <div class="row">          
-          <div class="col-md-12">
-            <!-- Portfolio Controller/Buttons -->
-            <div class="controls text-center">
-              <a class="filter active btn btn-common btn-effect" data-filter="all">
-                All 
-              </a>
-              <a class="filter btn btn-common btn-effect" data-filter=".design">
-                Design 
-              </a>
-              <a class="filter btn btn-common btn-effect" data-filter=".development">
-                Development
-              </a>
-              <a class="filter btn btn-common btn-effect" data-filter=".print">
-                Print 
-              </a>
-            </div>
-            <!-- Portfolio Controller/Buttons Ends-->
-          </div>
-        </div>
-
-        <!-- Portfolio Recent Projects -->
-        <div id="portfolio" class="row">
-          <div class="col-lg-4 col-md-6 col-xs-12 mix development print">
-            <div class="portfolio-item">
-              <div class="shot-item">
-                <img src="img/portfolio/img-1.jpg" alt="" />  
-                <div class="single-content">
-                  <div class="fancy-table">
-                    <div class="table-cell">
-                      <div class="zoom-icon">
-                        <a class="lightbox" href="img/portfolio/img-1.jpg"><i class="lni lni-zoom-in item-icon"></i></a>
-                      </div>
-                      <a href="#">View Project</a>
-                    </div>
-                  </div>
-                </div>
-              </div>               
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12 mix design print">
-            <div class="portfolio-item">
-              <div class="shot-item">
-                <img src="img/portfolio/img-2.jpg" alt="" /> 
-                <div class="single-content">
-                  <div class="fancy-table">
-                    <div class="table-cell">
-                      <div class="zoom-icon">
-                        <a class="lightbox" href="img/portfolio/img-2.jpg"><i class="lni lni-zoom-in item-icon"></i></a>
-                      </div>
-                      <a href="#">View Project</a>
-                    </div>
-                  </div>
-                </div>
-              </div>               
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12 mix development">
-            <div class="portfolio-item">
-              <div class="shot-item">
-                <img src="img/portfolio/img-3.jpg" alt="" />  
-                <div class="single-content">
-                  <div class="fancy-table">
-                    <div class="table-cell">
-                      <div class="zoom-icon">
-                        <a class="lightbox" href="img/portfolio/img-3.jpg"><i class="lni lni-zoom-in item-icon"></i></a>
-                      </div>
-                      <a href="#">View Project</a>
-                    </div>
-                  </div>
-                </div>
-              </div>               
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12 mix development design">
-            <div class="portfolio-item">
-              <div class="shot-item">
-                <img src="img/portfolio/img-4.jpg" alt="" /> 
-                <div class="single-content">
-                  <div class="fancy-table">
-                    <div class="table-cell">
-                      <div class="zoom-icon">
-                        <a class="lightbox" href="img/portfolio/img-4.jpg"><i class="lni lni-zoom-in item-icon"></i></a>
-                      </div>
-                      <a href="#">View Project</a>
-                    </div>
-                  </div>
-                </div>
-              </div>               
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12 mix development">
-            <div class="portfolio-item">
-              <div class="shot-item">
-                <img src="img/portfolio/img-5.jpg" alt="" />  
-                <div class="single-content">
-                  <div class="fancy-table">
-                    <div class="table-cell">
-                      <div class="zoom-icon">
-                        <a class="lightbox" href="img/portfolio/img-5.jpg"><i class="lni lni-zoom-in item-icon"></i></a>
-                      </div>
-                      <a href="#">View Project</a>
-                    </div>
-                  </div>
-                </div>
-              </div>               
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 col-xs-12 mix print design">
-            <div class="portfolio-item">
-              <div class="shot-item">
-                <img src="img/portfolio/img-6.jpg" alt="" />  
-                <div class="single-content">
-                  <div class="fancy-table">
-                    <div class="table-cell">
-                      <div class="zoom-icon">
-                        <a class="lightbox" href="img/portfolio/img-6.jpg"><i class="lni lni-zoom-in item-icon"></i></a>
-                      </div>
-                      <a href="#">View Project</a>
-                    </div>
-                  </div>
-                </div>
-              </div>               
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Container Ends -->
-    </section>
-    <!-- Portfolio Section Ends --> 
-
-    <!-- Start Pricing Table Section -->
-    <div id="pricing" class="section pricing-section" style="display: none">
-      <div class="container">
-        <div class="section-header">          
-          <h2 class="section-title">Pricing Plans</h2>
-          <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos debitis.</p>
-        </div>
-
-        <div class="row pricing-tables">
-          <div class="col-lg-4 col-md-4 col-xs-12">
-            <div class="pricing-table">
-              <div class="pricing-details">
-                <h2>Starter Plan</h2>
-                <div class="price">49$ <span>/mo</span></div>
-                <ul>
-                  <li>Consectetur adipiscing</li>
-                  <li>Nunc luctus nulla et tellus</li>
-                  <li>Suspendisse quis metus</li>
-                  <li>Vestibul varius fermentum erat</li>
-                  <li> - </li>
-                </ul>
-              </div>
-              <div class="plan-button">
-                <a href="#" class="btn btn-common btn-effect">Get Plan</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4 col-xs-12">
-            <div class="pricing-table pricing-big">
-              <div class="pricing-details">
-                <h2>Popular Plan</h2>
-                <div class="price">99$ <span>/mo</span></div>
-                <ul>
-                  <li>Consectetur adipiscing</li>
-                  <li>Nunc luctus nulla et tellus</li>
-                  <li>Suspendisse quis metus</li>
-                  <li>Vestibul varius fermentum erat</li>
-                  <li> - </li>
-                </ul>
-              </div>
-              <div class="plan-button">
-                <a href="#" class="btn btn-common btn-effect">Buy Now</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-4 col-xs-12">
-            <div class="pricing-table">
-              <div class="pricing-details">
-                <h2>Premium Plan</h2>
-                <div class="price">199$ <span>/mo</span></div>
-                <ul>
-                  <li>Consectetur adipiscing</li>
-                  <li>Nunc luctus nulla et tellus</li>
-                  <li>Suspendisse quis metus</li>
-                  <li>Vestibul varius fermentum erat</li>
-                  <li>Suspendisse quis metus</li>
-                </ul>
-              </div>
-              <div class="plan-button">
-                <a href="#" class="btn btn-common btn-effect">Buy Now</a>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!-- End Pricing Table Section -->
-
-    <!-- Counter Section Start -->
-    <div class="counters section bg-defult" style="display: none">
-      <div class="container">
-        <div class="row"> 
-          <div class="col-sm-6 col-md-6 col-lg-3">
-            <div class="facts-item"> 
-              <div class="icon">
-                <i class="lni lni-rocket"></i>
-              </div>                
-              <div class="fact-count">
-                <h3><span class="counter">100</span>%</h3>
-                <h4>Faster</h4>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-3">
-            <div class="facts-item">
-              <div class="icon">
-                <i class="lni lni-coffee-cup"></i>
-              </div>                
-              <div class="fact-count">
-                <h3><span class="counter">700</span></h3>
-                <h4>Cup of Coffee</h4>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-3">
-            <div class="facts-item">
-              <div class="icon">
-                <i class="lni lni-user"></i>
-              </div>                
-              <div class="fact-count">
-                <h3><span class="counter">10000</span>+</h3>
-                <h4>Active Clients</h4>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-6 col-lg-3">
-            <div class="facts-item">
-              <div class="icon">
-                <i class="lni lni-heart"></i>
-              </div>                
-              <div class="fact-count">
-                <h3><span class="counter">1689</span></h3>
-                <h4>Peoples Love</h4>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Counter Section End -->
-
-    <!-- Testimonial Section Start -->
-    <section class="testimonial section" style="display: none">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div id="testimonials" class="touch-slider owl-carousel">
-              <div class="item">
-                <div class="testimonial-item">
-                  <div class="author">
-                    <div class="img-thumb">
-                    <img src="img/testimonial/img1.jpg" alt="">
-                    </div>
-                    <div class="author-info">
-                      <h2><a href="#">Johnathan Doe</a></h2>
-                      <span>Marketing Head Matrix media</span>
-                    </div>
-                  </div>
-                  <div class="content-inner">
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star"></i></span>
-                    <span><i class="lni lni-star"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial-item">
-                  <div class="author">
-                    <div class="img-thumb">
-                    <img src="img/testimonial/img2.jpg" alt="">
-                    </div>
-                    <div class="author-info">
-                      <h2><a href="#">Oidila Matik</a></h2>
-                      <span>President Lexo Inc</span>
-                    </div>
-                  </div>
-                  <div class="content-inner">
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial-item">
-                  <div class="author">
-                    <div class="img-thumb">
-                    <img src="img/testimonial/img3.jpg" alt="">
-                    </div>
-                    <div class="author-info">
-                      <h2><a href="#">- Alex Dattilo</a></h2>
-                      <span>CEO Optima Inc</span>
-                    </div>
-                  </div>
-                  <div class="content-inner">
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial-item">
-                  <div class="author">
-                    <div class="img-thumb">
-                    <img src="img/testimonial/img2.jpg" alt="">
-                    </div>
-                    <div class="author-info">
-                      <h2><a href="#">Oidila Matik</a></h2>
-                      <span>President Lexo Inc</span>
-                    </div>
-                  </div>
-                  <div class="content-inner">
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimonial-item">
-                  <div class="author">
-                    <div class="img-thumb">
-                    <img src="img/testimonial/img1.jpg" alt="">
-                    </div>
-                    <div class="author-info">
-                      <h2><a href="#">- Alex Dattilo</a></h2>
-                      <span>CEO Optima Inc</span>
-                    </div>
-                  </div>
-                  <div class="content-inner">
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quidem, excepturi facere magnam illum, at accusantium doloremque odio.</p>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star-filled"></i></span>
-                    <span><i class="lni lni-star"></i></span>
-                    <span><i class="lni lni-star"></i></span>
-                    <span><i class="lni lni-star"></i></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Testimonial Section End --> 
-
-    <!-- Call To Action Section Start -->
-    <section id="cta" class="section" data-stellar-background-ratio="0.5" style="display: none">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-xs-12">            
-            <div class="cta-text">
-              <h5>Stil confused? Download a free lite version to get started!</h5>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6 col-xs-12 text-right">
-            <a href="#" class="btn btn-border">Download</a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Call To Action Section Start -->
-
-    <!-- Subcribe Section Start -->
-    <div id="subscribe" class="section" style="display:none">
-      <div class="container">
-        <div class="row justify-content-between">
-          <div class="col-lg-5 col-md-12 col-xs-12">
-            <div class="subscribe-form">
-              <div class="form-wrapper">
-                <div class="sub-title text-center">
-                  <h3>Subscribe to Newsletter</h3>
-                  <p>Weekly Freebies and More!</p>
-                </div>
-                <form>
-                  <div class="row">
-                    <div class="col-12 form-line">
-                      <div class="form-group">
-                        <input type="text" class="form-control" name="email" placeholder="Name">
-                      </div>
-                    </div>
-                    <div class="col-md-12 form-line">
-                      <div class="form-group">
-                        <input type="text" class="form-control" name="phone" placeholder="Phone">
-                      </div>
-                    </div>
-                    <div class="col-12 form-line">
-                      <div class="form-group">
-                        <input type="email" class="form-control" name="email" placeholder="Email">
-                      </div> 
-                    </div>
-                    <div class="col-12">
-                      <div class="form-submit">
-                        <button type="submit" class="btn btn-common btn-effect">Subscribe Now</button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-12 col-xs-12">
-            <div class="sub-item-box">
-              <div class="icon-box">
-                <i class="lni lni-bullhorn"></i>
-              </div>
-              <div class="text-box">
-                <h4>Weekly Free Learning Materials</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, laborum libero beatae obcaecati.</p>
-              </div>
-            </div>
-            <div class="sub-item-box">
-              <div class="icon-box">
-                <i class="lni lni-book"></i>
-              </div>
-              <div class="text-box">
-                <h4>Free PDF to Get Started</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, laborum libero beatae obcaecati.</p>
-              </div>
-            </div>
-            <div class="sub-item-box">
-              <div class="icon-box">
-                <i class="lni lni-timer"></i>
-              </div>
-              <div class="text-box">
-                <h4>10% Instant Discount</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, laborum libero beatae obcaecati.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Subcribe Section End -->
-
-    <!-- Blog Section -->
-    <section id="blog" class="section" style="display: none">
-      <!-- Container Starts -->
-      <div class="container">
-        <div class="section-header">          
-          <h2 class="section-title">Blogs</h2>
-          <span>Blogs</span>
-          <p class="section-subtitle">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dignissimos debitis.</p>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-            <!-- Blog Item Starts -->
-            <div class="blog-item-wrapper">
-              <div class="blog-item-img">
-                <a href="single-post.html">
-                  <img src="img/blog/img1.jpg" alt="">
-                </a>                
-              </div>
-              <div class="blog-item-text"> 
-                <div class="date"><i class="lni lni-calendar"></i>10 April, 2018</div>
-                <h3><a href="single-post.html">10 Tips to Design a High-converting Landing Page</a></h3>
-                <div class="meta-tags">
-                  <span><a href="#"><i class="lni lni-eye"></i> 4.5k Views</a></span>
-                  <span><a href="#"><i class="lni lni-bubble"></i> 07</a></span>
-                  <span><a href="#"><i class="lni lni-reply"></i> 332</a></span>
-                </div>
-              </div>
-            </div>
-            <!-- Blog Item Wrapper Ends-->
-          </div>
-
-          <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-            <!-- Blog Item Starts -->
-            <div class="blog-item-wrapper">
-              <div class="blog-item-img">
-                <a href="single-post.html">
-                  <img src="img/blog/img2.jpg" alt="">
-                </a>                
-              </div>
-              <div class="blog-item-text"> 
-                <div class="date"><i class="lni lni-calendar"></i>10 April, 2018</div>
-                <h3><a href="single-post.html">How to Design a Website For Your App</a></h3>
-                <div class="meta-tags">
-                  <span><a href="#"><i class="lni lni-eye"></i> 4.5k Views</a></span>
-                  <span><a href="#"><i class="lni lni-bubble"></i> 07</a></span>
-                  <span><a href="#"><i class="lni lni-reply"></i> 332</a></span>
-                </div>
-              </div>
-            </div>
-            <!-- Blog Item Wrapper Ends-->
-          </div>
-
-          <div class="col-lg-4 col-md-6 col-xs-12 blog-item">
-            <!-- Blog Item Starts -->
-            <div class="blog-item-wrapper">
-              <div class="blog-item-img">
-                <a href="single-post.html">
-                  <img src="img/blog/img3.jpg" alt="">
-                </a>                
-              </div>
-              <div class="blog-item-text"> 
-                <div class="date"><i class="lni lni-calendar"></i>10 April, 2018</div>
-                <h3><a href="single-post.html">7 Secretes to Optimize Loading Speed of Your Site</a></h3>
-                <div class="meta-tags">
-                  <span><a href="#"><i class="lni lni-eye"></i> 4.5k Views</a></span>
-                  <span><a href="#"><i class="lni lni-bubble"></i> 07</a></span>
-                  <span><a href="#"><i class="lni lni-reply"></i> 332</a></span>
-                </div>
-              </div>
-            </div>
-            <!-- Blog Item Wrapper Ends-->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- blog Section End -->
-
-    <!-- Clients Section -->
-    <div id="clients" class="section" style="display: none">
-      <!-- Container Ends -->
-      <div class="container">
-        <!-- Row and Scroller Wrapper Starts -->
-        <div class="row" id="clients-scroller">
-          <div class="client-item-wrapper">
-            <img src="img/clients/img1.png" alt="">
-          </div>
-          <div class="client-item-wrapper">
-            <img src="img/clients/img2.png" alt="">
-          </div>
-          <div class="client-item-wrapper">
-            <img src="img/clients/img3.png" alt="">
-          </div>
-          <div class="client-item-wrapper">
-            <img src="img/clients/img4.png" alt="">
-          </div>
-          <div class="client-item-wrapper">
-            <img src="img/clients/img5.png" alt="">
-          </div>
-          <div class="client-item-wrapper">
-            <img src="img/clients/img6.png" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Client Section End --> 
-
-    <!-- Contact Section Start -->
-    <section id="contact" class="section">      
-      <div class="contact-form">
-        <div class="container">
-          <div class="section-header">          
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-subtitle"><a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/embrayse/demo'});return false;">Book your free demo</a> with us now. We'll work with you to identify your needs and see if Embrayse is right for you. If you prefer to just drop us a line, use the form below.</p>
-          </div>
-          <div class="row">          
-            <div class="col-lg-9 col-md-9 col-xs-12">
-              <div class="contact-block">
-                <form id="contactForm">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required data-error="Please enter your name">
-                        <div class="help-block with-errors"></div>
-                      </div>                                 
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <input type="text" placeholder="Your Email" id="email" class="form-control" name="email" required data-error="Please enter your email">
-                        <div class="help-block with-errors"></div>
-                      </div> 
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <input type="text" placeholder="Subject" id="msg_subject" class="form-control" name="msg_subject" required data-error="Please enter your subject">
-                        <div class="help-block with-errors"></div>
-                      </div>
-                    </div>
-                    <div class="col-md-12">
-                      <div class="form-group"> 
-                        <textarea class="form-control" id="message" name="message" placeholder="Your Message" rows="7" data-error="Write your message" required></textarea>
-                        <div class="help-block with-errors"></div>
-                      </div>
-                      <div class="submit-button">
-                        <button class="btn btn-common btn-effect" id="submit" type="submit">Send Message</button>
-                        <div id="msgSubmit" class="h3 hidden"></div> 
-                        <div class="clearfix"></div> 
-                      </div>
-                      <div class="message-container">
-                        <div class="spinner">
-                          <div class="double-bounce1"></div>
-                          <div class="double-bounce2"></div>
-                        </div>
-                        <div id="submission-message">
-                      </div>
-                      </div>
-                    </div>
-                  </div>            
-                </form>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-xs-12">
-              <div class="contact-deatils">
-                <!-- Content Info -->
-                <div class="contact-info_area">
-                  <!-- <div class="contact-info">
-                    <i class="lni lni-map"></i>
-                    <h5>Location</h5>
-                    <p>1900 Pico Blvd, New York br Centernial, colorado</p>
-                  </div> -->
-                  <!-- Content Info -->
-                  <div class="contact-info">
-                    <i class="lni lni-envelope"></i>
-                    <h5>E-mail</h5>
-                    <p>info@embrayse.com</p>
-                  </div>
-                  <!-- Content Info -->
-                  <div class="contact-info">
-                    <i class="lni lni-phone"></i>
-                    <h5>Phone</h5>
-                    <p>+61 411 260 804 (Poya, CEO)</p>
-                  </div>
-                  <!-- Icon -->
-                  <!-- <ul class="footer-social">
-                    <li><a class="facebook" href="#"><i class="lni lni-facebook-filled"></i></a></li>
-                    <li><a class="twitter" href="#"><i class="lni lni-twitter-filled"></i></a></li>
-                    <li><a class="linkedin" href="#"><i class="lni lni-linkedin-fill"></i></a></li>
-                    <li><a class="google-plus" href="#"><i class="lni lni-google-plus"></i></a></li>
-                  </ul> -->
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>            
-    </section>
-    <!-- Contact Section End -->
-    
-    <!-- Map Section Start -->
-    <section id="google-map-area" style="display: none">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 padding-0">
-            <object style="border:0; height: 450px; width: 100%;" data="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d34015.943594576835!2d-106.43242624069771!3d31.677719472407432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86e75d90e99d597b%3A0x6cd3eb9a9fcd23f1!2sCourtyard+by+Marriott+Ciudad+Juarez!5e0!3m2!1sen!2sbd!4v1533791187584"></object>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Map Section End -->
-
-    <!-- Footer Section Start -->
-    <footer style="display: none">
-      <!-- Footer Area Start -->
-      <section class="footer-Content">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <h3>Essence</h3>
-              <div class="textwidget">
-                <p>If you think you have the passion, 
-                attitude and capability to join us 
-                the next big software company
-                s so that we can get the convers.</p>
-              </div>
-              <ul class="footer-social">
-                <li><a class="facebook" href="#"><i class="lni lni-facebook-filled"></i></a></li>
-                <li><a class="twitter" href="#"><i class="lni lni-twitter-filled"></i></a></li>
-                <li><a class="linkedin" href="#"><i class="lni lni-linkedin-fill"></i></a></li>
-                <li><a class="google-plus" href="#"><i class="lni lni-google-plus"></i></a></li>
-              </ul> 
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <div class="widget">
-                <h3 class="block-title">Short Link</h3>
-                <ul class="menu">
-                  <li><a href="#">Service</a></li>
-                  <li><a href="#">Wishlist</a></li>
-                  <li><a href="#">FAQ</a></li>
-                  <li><a href="#">Advance Sarch</a></li>
-                  <li><a href="#">Site Map</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <div class="widget">
-                <h3 class="block-title">Contact Us</h3>
-                <ul class="contact-footer">
-                  <li>
-                    <strong>Address :</strong> <span>1900 Pico Blvd, New York br Centernial, colorado</span>
-                  </li>
-                  <li>
-                    <strong>Phone :</strong> <span>+61 411 260 804</span>
-                  </li>
-                  <li>
-                    <strong>E-mail :</strong> <span><a href="#">info@embrayse.com</a></span>
-                  </li>
-                </ul> 
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 col-mb-12">
-              <div class="widget">
-                <h3 class="block-title">Instagram</h3>
-                <ul class="instagram-footer">
-                  <li><a href="#"><img src="img/instagram/insta1.jpg" alt=""></a></li>
-                  <li><a href="#"><img src="img/instagram/insta2.jpg" alt=""></a></li>
-                  <li><a href="#"><img src="img/instagram/insta3.jpg" alt=""></a></li>
-                  <li><a href="#"><img src="img/instagram/insta4.jpg" alt=""></a></li>
-                  <li><a href="#"><img src="img/instagram/insta5.jpg" alt=""></a></li>
-                  <li><a href="#"><img src="img/instagram/insta6.jpg" alt=""></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- Footer area End -->
-      
-      <!-- Copyright Start  -->
-      <!-- <div id="copyright">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="site-info float-left">
-                <p>Crafted by <a href="http://uideck.com" rel="nofollow">UIdeck</a></p>
-              </div>              
-              <div class="float-right">  
-                <ul class="nav nav-inline">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="#">About Prime</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">TOS</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Return Policy</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">FAQ</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-      <!-- Copyright End -->
-
+    <footer>
+      <div>2021 Embrayse ©. All rights reserved.</div>
     </footer>
-    <!-- Footer Section End --> 
-
-    <!-- Go To Top Link -->
-    <a href="#" class="back-to-top">
-      <i class="lni lni-arrow-up"></i>
-    </a>
-
-    <div id="loader">
-      <div class="spinner">
-        <div class="double-bounce1"></div>
-        <div class="double-bounce2"></div>
-      </div>
-    </div>    
-
-    <!-- jQuery first, then Tether, then Bootstrap JS. -->
-    <script src="js/jquery-min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/classie.js"></script>
-    <!-- <script src="js/color-switcher.js"></script> -->
-    <script src="js/jquery.mixitup.js"></script>
-    <script src="js/nivo-lightbox.js"></script>
-    <script src="js/owl.carousel.js"></script>    
-    <script src="js/jquery.stellar.min.js"></script>    
-    <script src="js/jquery.nav.js"></script>    
-    <script src="js/scrolling-nav.js"></script>    
-    <script src="js/jquery.easing.min.js"></script>     
-    <script src="js/wow.js"></script> 
-    <script src="js/jquery.vide.js"></script>
-    <script src="js/jquery.counterup.min.js"></script>    
-    <script src="js/jquery.magnific-popup.min.js"></script>    
-    <script src="js/waypoints.min.js"></script>    
-    <script src="js/form-validator.min.js"></script>
-    <!-- <script src="js/contact-form-script.js"></script>    -->
-    <script src="js/main.js"></script>
-    
   </body>
 </html>
