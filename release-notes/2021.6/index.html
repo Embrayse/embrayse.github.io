@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Aged care, Elderly care, Nursing home, Meal management, Food management, Software">
+    <meta name="description" content="A simple and intuitive meal management app for aged care homes to help you and your team create menus, take orders on the go, prep and fulfill meals.">
+    <meta name="author" content="Embrayse Pty Ltd">
+    <meta name="robots" content="noindex">
+    <title>Embrayse | What's new in release 2021.6</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico?">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../css/colors.css">
+    <link rel="stylesheet" href="../../css/sizes.css">
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/release-notes.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=PT+Serif:wght@400;700&family=Pridi:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=PT+Serif">
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=PT+Sans">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MWGM8WK');</script>
+    <!-- End Google Tag Manager -->
+  </head>
+  
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <img class="logo" src="../../img/logo/embrayse-logo-lightbg.png" />
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+        <section>
+          <div class="content-container">
+            <header>
+              <h1>What's new in release 2021.6</h1>
+            </header>
+            <p>This release contains two important changes, as well as a few small improvements.</p>
+          </div>
+        </section>
+
+        <section>
+          <div class="content-container">
+            <h2>Person Centred Software (PCS) Integration</h2>
+            <p>
+              One of our most requested features has been the ability to integrate with PCS, a leading clinical systems for aged care. Well, it's now here! Once you have set up the integration, resident names and rooms will automatically be synchronised
+              from PCS, they'll be marked as <em>away</em> when their file is suspended in PCS, and automatically archived once their file is closed. The synchronisation occurs every 15 minutes. <strong>To set up integration PCS, please work with your
+              Embrayse support contact</strong>.
+
+              Note that any resident fields that are linked to PCS will no longer be editable in Embrayse. These fields will be "locked" as shown below:
+            </p>
+            <img class="feature-screenshot border" src="pcs-links.png" style="max-width: 700px; width: 100%" />
+          </div>
+        </section>
+
+        <section>
+          <div class="content-container">
+            <h2>Print a subset of dockets</h2>
+            <p>
+              You can already filter the prep report before printing dockets. But now you can go even further and select the specific range of dockets you want to print. Simply select the <em>From</em> and <em>To</em> fields on the print dialog box.
+              This is especially useful if you want to print a single docket, or if you have to resume a print job after needing to replace the printer paper roll
+            </p>
+            <img class="feature-screenshot" src="print-range.gif" style="max-width: 1000px" />
+          </div>
+        </section>
+
+        <section>
+          <div class="content-container">
+            <h2>Other improvements and bug fixes</h2>
+            <p>We have made a few other improvements and bug fixes:
+              <ul>
+                <li>On the room selector on resident order page, you can now see the wing name as well as the room number.</li>
+                <li>Fixed: sometimes dockets don't print correctly when printing many in one go (due to a timeout).</li>
+                <li>Fixed: keyboard focus is sometimes lost when editing residents or dishes.</li>
+                <li>Fixed: the notification dropdown sometimes does not show when there are many notifications.</li>
+                <li>Updated the website icon that appears on the browser tab bar.</li>
+              </ul>
+            </p>
+          </div>
+        </section>
+
+      </article>
+    </main>
+
+    <footer>
+      <div>2021 Embrayse ©. All rights reserved.</div>
+    </footer>
+  </body>
+</html>
