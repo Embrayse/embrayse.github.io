@@ -15,3 +15,12 @@ ul {
   border-radius: 5px;
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.15);
 }
+
+.img-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.img-row .spacer {
+  flex-grow: 1;
+}
