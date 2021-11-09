@@ -146,6 +146,11 @@ body > main > article > section.alt {
   box-shadow: 0 20px 20px rgba(0, 0, 0, 0.15);
 }
 
+.hero-image > iframe {
+    width: 608px;
+    height: 342px;
+}
+
 .punchline {
   font-size: var(--font-size-body-large);
 }
@@ -459,6 +464,7 @@ footer {
 
   .hero-image {
     margin-bottom: 20px;
+    width: 100%;
   }
 
   .hero-image.right {
@@ -468,6 +474,11 @@ footer {
   .hero-image img {
     width: 100%;
     height: auto;
+  }
+
+  .hero-image > iframe {
+    width: calc(100vw - 40px);
+    height: calc((100vw - 40px) * 9 / 16);
   }
 
   .photo-desc {
