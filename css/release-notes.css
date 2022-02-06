@@ -24,3 +24,9 @@ ul {
 .img-row .spacer {
   flex-grow: 1;
 }
+
+.notice {
+  background: rgb(252, 237, 158);
+  padding: 20px;
+  border-left: 5px solid rgb(242, 219, 104);
+}
