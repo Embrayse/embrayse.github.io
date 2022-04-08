@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Aged care, Elderly care, Nursing home, Meal management, Food management, Software">
+    <meta name="description" content="A simple and intuitive meal management app for aged care homes to help you and your team create menus, take orders on the go, prep and fulfill meals.">
+    <meta name="author" content="Embrayse Pty Ltd">
+    <meta name="robots" content="noindex">
+    <title>Embrayse | What’s new in release 2022.2</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.ico?">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../css/colors.css">
+    <link rel="stylesheet" href="../../css/sizes.css">
+    <link rel="stylesheet" href="../../css/reset.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/release-notes.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@700&family=PT+Serif:wght@400;700&family=Pridi:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=PT+Serif">
+    <link rel="stylesheet"  href="https://fonts.googleapis.com/css?family=PT+Sans">
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-MWGM8WK');</script>
+    <!-- End Google Tag Manager -->
+
+  </head>
+  
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <img class="logo" src="../../img/logo/embrayse-logo-lightbg.png" />
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+        <section>
+          <div class="content-container">
+            <header>
+              <h1>What’s new in release 2022.2</h1>
+            </header>
+            <p>
+              Our second major release for 2022 brings with it several process and efficiency improvements. Here is an
+              overview:
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <div class="content-container">
+            <h2>Food and drink texture overrides</h2>
+            <p>
+              Residents can now easily choose a different texture for their meals, on a per-order basis. This is
+              useful when, for example, a resident likes to have their porridge pureed even though they are on a regular
+              diet, or if they are on a minced & moist diet but have a waiver to have a whole pastry. Just like portion
+              sizes and notes, texture overrides are remembered as a preference for each menu item so when it is selected
+              again in the future, the texture override is automatically applied.
+            </p>
+            <strong>Safety measures:</strong>
+            <ul>
+              <li>
+                If the selected texture override is less restrictive than the resident’s default texture,
+                an extra confirmation is displayed to your staff.
+              </li>
+              <li>
+                Whenever a resident’s default food or drink texture level is changed by your clinical team, then
+                any existing orders and menu item preferences are automatically updated to ensure they do not exceed the
+                new texture level.
+              </li>
+            </ul>
+            <div class="img-row">
+              <img class="feature-screenshot" src="override-texture.gif" style="width: 100%" />
+            </div>
+          </div>
+        </section>
+        
+        <section>
+          <div class="content-container">
+            <h2>Quick resident picker</h2>
+            <p>
+              Collection of orders is now quicker than ever. Using the new resident picker control, you can not only
+              select a room number from the dropdown, but using the forward and backward arrows you can jump to the next
+              or previous room. Any unoccupied rooms are automatically skipped over.
+            </p>
+            <div class="img-row">
+              <img class="feature-screenshot" src="resident-picker.gif" style="width: 100%" />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="content-container">
+            <h2>PCS integration enhancements</h2>
+            <p>
+              Facilities using the PCS integration will now see <strong>Food & Drink Textures</strong>,
+              <strong>Allergies</strong>, and <strong>Medical Conditions</strong> automatically synchronised to Embrayse.
+              This minimises the need to manually update these fields in Embrayse and ensures the kitchen is up to date
+              with residents’ latest dietary information.
+            </p>
+
+            <p>
+            Note that for medical conditions, the <strong>Medical Summary</strong> field in PCS person profile is
+            inspected. Currently, the following information are synchronised from PCS:
+            </p>
+
+            <p>
+              <div>
+                <strong style="display: inline">Food textures:</strong> Pureed (Level 4), Minced and Moist (Level 5), Soft & Bite Sized (Level 6), Regular (Level 7).
+              </div>
+              <div>
+                <strong>Drink thickness:</strong> Thin(Level 0), Slightly Thick(Level 1), Mildly Thick(Level 2), Moderately Thick(Level 3), Extremely Thick(Level 4).
+              </div>
+              <div>
+                <strong>Allergies</strong>: Milk, Fish, Shellfish, Crustacean, Mollusc, Soy, Sesame, Pumpkin, Wheat, Lupin, Sulphite/Sulfite, Egg, Peanut, Tree Nut, Eggplant, Celery.
+              </div>
+              <div>
+                <strong>Medical conditions</strong>: Diabetes, Diverticulosis/Diverticulitis, Crohn’s, Coeliac.
+              </div>
+            </p>
+
+            <p class="notice">
+              IMPORTANT: Because PCS largely utilises free-text fields, the integration is a "best effort" and Embrayse
+              cannot guarantee that the information is synchronised 100% of the time. Spelling mistakes or use of
+              unrecognised terminology in PCS will cause the information not to come across to Embrayse. If you notice
+              any information missing from Embrayse that you believe to be in error, please notify our support team.
+            </p>
+          </div>
+        </section>
+
+        <section>
+          <div class="content-container">
+            <h2>Away status changes</h2>
+            <p>
+              Embrayse has always given you the ability to mark a resident as being <em>away</em>. In the past we have hidden
+              any orders placed by a resident who is away, from the <strong>Prep report</strong> and printed dockets. We
+              have since learnt that sometimes a resident may leave and come back multiple times a day, and we want to ensure
+              their orders are not missed. With this update, orders will always show on the <strong>Prep report</strong>
+              regardless of the away status. Additionally, we show this status on the report for clarity.
+            </p>
+            <div class="img-row">
+              <img class="feature-screenshot" src="away-status.png" style="width: 100%" />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class="content-container">
+            <h2>Other improvements and bug fixes</h2>
+            <ul>
+              <li>Fixed: Sometimes when a resident has open orders, their room can’t be changed.</li>
+            </ul>
+            </p>
+          </div>
+        </section>
+
+      </article>
+    </main>
+
+    <footer>
+      <div>2022 Embrayse ©. All rights reserved.</div>
+    </footer>
+  </body>
+</html>
