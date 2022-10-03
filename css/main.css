@@ -28,7 +28,7 @@ p {
   margin-bottom: 20px;
 }
 
-.button {
+.button, .button-secondary {
   font-family: "PT Sans";
   font-weight: bold;
   display: inline-block;
@@ -37,10 +37,18 @@ p {
   padding: 5px 10px;
   border-radius: 5px;
   font-size: var(--font-size-body-large);
+  vertical-align: middle;
 }
 
 .button.small {
   font-size: var(--font-size-body-small);
+}
+
+.button-secondary {
+  background-color: transparent;
+  border: 1px solid black;
+  color: black;
+  font-weight: normal;
 }
 
 .large-bottom-margin {
@@ -130,6 +138,12 @@ body > main > article > section.alt {
 
 .hero-box > :not(:first-child) {
   margin-left: 20px;
+}
+
+.hero-box .actions {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .hero-image {
@@ -460,6 +474,10 @@ footer {
 
   .hero-box > :not(:first-child) {
     margin: 0;
+  }
+  
+  .hero-box .actions {
+    justify-content: center;
   }
 
   .hero-image {
