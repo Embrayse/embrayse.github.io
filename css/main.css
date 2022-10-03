@@ -475,7 +475,7 @@ footer {
   .hero-box > :not(:first-child) {
     margin: 0;
   }
-  
+
   .hero-box .actions {
     justify-content: center;
   }
